@@ -12,7 +12,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <div>
             <Link href="/">
-              <span className="font-bold text-2xl text-slate-200">Umut Durmuşoğlu</span>
+            <span className="flex items-center gap-2 font-medium py-1 px-3 border border-solid shadow-[-7px_7px_0px_#00000] text-white ">Umut Durmuşoğlu</span>
             </Link>
           </div>
           <div className="md:hidden">

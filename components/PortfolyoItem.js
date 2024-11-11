@@ -44,3 +44,4 @@ export default function PortfolyoItem({ category, images, index }) {
     </div>
   );
 }
+

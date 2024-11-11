@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <div className="bg-slate-400 flex min-h-screen">
       <div className="flex w-full">
-        <div className="w-1/6">
+        <div className="w-1/7">
           <Sidebar />
         </div>
         <div className="relative flex flex-col w-full">

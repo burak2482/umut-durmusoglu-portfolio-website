@@ -15,9 +15,9 @@ export default function Sidebar() {
             </span>
           </Link>
         </div>
-        <div className="mt-5">
+        <div className="mt-5 border-b border-black">
           <Link href="/admin/portfolyoList">
-            <span className="flex items-center gap-3 font-medium px-3 py-2 bg-white">
+            <span className="flex items-center gap-3 font-medium px-4 py-4 bg-white">
               Portfolyo Listesi
             </span>
           </Link>

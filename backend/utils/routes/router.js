@@ -1,14 +1,11 @@
 import express from 'express';
-import PortfolyoModel from '../models/portfolyoModel';
-import {
-  portfolyoAdd,
-  uploadPortfolyoPhoto,
-  resizePortfolyoPhoto,
-} from '../../controllers/portfolyoAddController';
-import portfolyoGetController from '../../controllers/portfolyoGetController';
-import portfolyoDeleteController from '../../controllers/portfolyoDeleteController';
+import { portfolyoAdd, uploadPortfolyoPhoto, resizePortfolyoPhoto } from '../../controllers/portfolyoAddController.js';
+import { portfolyoGet } from '../../controllers/portfolyoGetController.js';
+import { portfolyoDelete } from '../../controllers/portfolyoDeleteController.js';
 
 const router = express.Router();
+
+
 
 // Portfolio Ekleme Route'u
 router.post(
@@ -18,8 +15,8 @@ router.post(
   resizePortfolyoPhoto
 );
 
-router.get('/get', portfolyoGetController.portfolyoGet)
+router.get('/get',portfolyoGet)
 
-router.delete('/delete/:id', portfolyoDeleteController.portfolyoDelete)
+router.delete('/delete/:id', portfolyoDelete)
 
 export default router;

@@ -1,6 +1,6 @@
 import multer from 'multer';
 import sharp from 'sharp';
-import PortfolyoModel from '../models/portfolyoModel';
+import PortfolyoModel from '../utils/models/portfolyoModel.js';
 
 // Multer Storage ve Filter
 const multerStorage = multer.memoryStorage();

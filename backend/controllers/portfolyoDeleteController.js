@@ -1,4 +1,7 @@
-export default portfolyoDelete = async (req, res) => {
+import PortfolyoModel from "../utils/models/portfolyoModel.js";
+
+
+export const portfolyoDelete = async (req, res) => {
   const { id } = req.params;
 
   try {

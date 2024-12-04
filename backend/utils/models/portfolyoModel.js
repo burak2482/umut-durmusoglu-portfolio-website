@@ -18,6 +18,6 @@ const Schema = new mongoose.Schema({
   },
 });
 
-const PortfolyoModel = mongoose.Model('portfolyo', Schema);
+const PortfolyoModel = mongoose.model('portfolyo', Schema);
 
 export default PortfolyoModel;

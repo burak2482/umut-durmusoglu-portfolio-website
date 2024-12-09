@@ -10,9 +10,9 @@ const router = express.Router();
 // Portfolio Ekleme Route'u
 router.post(
   '/add',
-  portfolyoAdd,
   uploadPortfolyoPhoto,
-  resizePortfolyoPhoto
+  resizePortfolyoPhoto,
+  portfolyoAdd
 );
 
 router.get('/get',portfolyoGet)

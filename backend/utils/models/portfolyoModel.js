@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const types = ['Kitap Kapağı', 'Afiş', 'Logo', 'Ödül', 'Poster', 'İlüstrasyon'];
+const turlerNeler = ['Kitap Kapağı', 'Afiş', 'Logo', 'Ödül', 'Poster', 'İlüstrasyon'];
 
 const Schema = new mongoose.Schema({
   name: {
@@ -8,13 +8,13 @@ const Schema = new mongoose.Schema({
     required: true,
   },
   photo: {
-    type: String,
+    type: Buffer,
     required: true,
   },
-  type: {
+  turler: {
     type: String,
     required: true,
-    enum: types,
+    enum: turlerNeler,
   },
 });
 

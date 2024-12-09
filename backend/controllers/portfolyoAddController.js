@@ -23,7 +23,7 @@ export const uploadPortfolyoPhoto = upload.single('photo');
 export const resizePortfolyoPhoto = async (req, res, next) => {
   if (!req.file) return next();
 
-  req.file.name = `user-${req.user.id}-${Date.now()}.jpeg`;
+  req.file.name = `user-${Date.now()}.jpeg`;
 
   try {
     await sharp(req.file.buffer)
@@ -39,14 +39,19 @@ export const resizePortfolyoPhoto = async (req, res, next) => {
 };
 
 export const portfolyoAdd = async (req, res) => {
-  const { type, photo, name } = req.body;
+  const { turler, name } = req.body;
 
-  if (!type || !photo || !name) {
+  if (!turler || !req.file || !name) {
+    console.log('Eksik alanlar:', { turler, file: req.file, name });
     return res.status(400).json({ error: 'Lütfen tüm alanları doldurun' });
   }
 
   try {
-    const Portfolyo = await PortfolyoModel.create({ type, photo, name });
+    const Portfolyo = await PortfolyoModel.create({
+      turler,
+      name,
+      photo: req.file.buffer, // Fotoğraf adı buradan alınır
+    });
     res.status(201).json(Portfolyo);
   } catch (err) {
     res
@@ -54,3 +59,4 @@ export const portfolyoAdd = async (req, res) => {
       .json({ message: 'Error happened while creating Portfolyo', error: err });
   }
 };
+

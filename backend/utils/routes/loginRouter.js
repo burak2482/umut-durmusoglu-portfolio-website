@@ -12,7 +12,9 @@ const createToken = (_id) => {
 const router = express.Router();
 
 router.post('/login', async (req,res) => {
-  const {email, password} = req.body
+  const {email, password} = req.body;
+
+  console.log('Login attempt with:', email, password);
 
   try {
     const user = await User.login(email, password)

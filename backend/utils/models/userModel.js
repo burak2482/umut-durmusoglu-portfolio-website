@@ -33,7 +33,7 @@ userSchema.statics.signup = async function (email, password) {
 
   const exists = await this.findOne({email})
 
-  if(exits) {
+  if(exists) {
     throw new Error('Email kullanılmakta')
   }
 

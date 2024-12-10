@@ -1,9 +1,17 @@
 import multer from 'multer';
 import sharp from 'sharp';
 import PortfolyoModel from '../utils/models/portfolyoModel.js';
+import path from 'path'
 
-// Multer Storage ve Filter
-const multerStorage = multer.memoryStorage();
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "../frontend/public/portfolyophotos");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split('/')[1]
+    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`);
+  }
+});
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -25,9 +33,11 @@ export const resizePortfolyoPhoto = async (req, res, next) => {
 
   req.file.name = `user-${Date.now()}.jpeg`;
 
+  const newPhotoName = `user-${Date.now()}.jpeg`;
+
   try {
-    await sharp(req.file.buffer)
-      .resize(500, 500)
+    await sharp(req.file.path)
+      .resize(900, 700)
       .toFormat('jpeg')
       .toFile(`../frontend/public/portfolyophotos/${req.file.name}`);
     next();
@@ -37,6 +47,7 @@ export const resizePortfolyoPhoto = async (req, res, next) => {
       .json({ error: 'Fotoğraf işlenirken bir hata oluştu', details: error.message });
   }
 };
+
 
 export const portfolyoAdd = async (req, res) => {
   const { turler, name } = req.body;
@@ -50,7 +61,7 @@ export const portfolyoAdd = async (req, res) => {
     const Portfolyo = await PortfolyoModel.create({
       turler,
       name,
-      photo: req.file.buffer, // Fotoğraf adı buradan alınır
+      photo: req.file.name,
     });
     res.status(201).json(Portfolyo);
   } catch (err) {
@@ -59,4 +70,3 @@ export const portfolyoAdd = async (req, res) => {
       .json({ message: 'Error happened while creating Portfolyo', error: err });
   }
 };
-

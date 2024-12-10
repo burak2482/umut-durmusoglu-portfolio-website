@@ -20,8 +20,8 @@ const requireAuth = async (req,res,next) => {
     req.user = await User.findOne({_id}).select('_id')
     next()
   } catch (error) {
-      console.error('Error:', err.response?.data || err.message);
-      setError('An error occurred during login');
+      console.error('Error:', error.response?.data || error.message);
+      console.log('An error occurred during login');
   }
 }
 

@@ -14,7 +14,7 @@ export const useLogin = () => {
     setisLoading(true)
     setError(null)
 
-    console.log('Sending email:', email, 'Password:', password);
+    console.log('Sending emaill:', email, 'Password:', password);
   
     const response = await axios.post('http://localhost:5000/user/login', {
       email,

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const turlerNeler = ['Kitap Kapağı', 'Afiş', 'Logo', 'Ödül', 'Poster', 'İlüstrasyon'];
+const turlerNeler = ['Kitap Kapağı', 'Afiş', 'Logo', 'Ödül', 'Poster', 'İllüstrasyon'];
 
 const Schema = new mongoose.Schema({
   name: {

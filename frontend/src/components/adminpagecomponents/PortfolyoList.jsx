@@ -70,7 +70,24 @@ const PortfolyoList = () => {
       console.log('Error:', err.response?.data || err.message);
     }
   };
-  
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/portfolio/delete/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setPortfolyolar((prevPortfolyolar) =>
+        prevPortfolyolar.filter((portfolyo) => portfolyo.id !== id)
+      );
+      fetchPortfolyo();
+      console.log("Portfolio deleted successfully");
+    } catch (error) {
+      console.error("Error deleting portfolio:", error.response?.data || error.message);
+    }
+  };
+
 
   return (
     <main className="bg-white min-h-screen w-full flex flex-col justify- items-center">
@@ -105,7 +122,7 @@ const PortfolyoList = () => {
             <option value="Ödül">Ödül</option>
             <option value="Afiş">Afiş</option>
             <option value="Poster">Poster</option>
-            <option value="İlüstrasyon">İlüstrasyon</option>
+            <option value="İllüstrasyon">İllüstrasyon</option>
           </select>
           
           <button type="submit" className="bg-neutral-800 text-white font-semibold py-2 px-2 mt-2 rounded-full text-xl mt-10">Ekle</button>
@@ -128,8 +145,16 @@ const PortfolyoList = () => {
                   <tr key={portfolyo.id || portfolyo._id || index}>
                     <td className="border px-2 md:px-9 font-semibold py-2 md:py-4">{portfolyo.name}</td>
                     <td className="border px-2 md:px-9 font-semibold py-2 md:py-4">{portfolyo.turler}</td>
-                    <td className="border px-2 md:px-9 font-semibold py-2 md:py-4">
-                      <img src={`/portfolyophotos/${portfolyo.photo}`} alt={portfolyo.name} className="w-16 h-16 object-cover"></img>
+                    <td className="border px-2 md:px-16 font-semibold py-2 md:py-4 ">
+                      <img src={`/portfolyophotos/${portfolyo.photo}`} alt={portfolyo.name} className="w-full block h-14 object-cover"></img>
+                    </td>
+                    <td>
+                      <button
+                          className="bg-black text-white font-semibold py-1 px-4 mt-10 mr-2 ml-2 text-center text-nowrap"
+                          onClick={() => handleDelete(portfolyo._id)}
+                        >
+                          Portfolyo Sil
+                        </button>
                     </td>
                   </tr>
                 ))

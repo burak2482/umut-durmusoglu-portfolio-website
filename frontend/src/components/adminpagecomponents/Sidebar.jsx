@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 const AdminPanel = () => {
   return (
-    <div className="h-full border-r bg-slate-200 border-black w-44 md:w-64 min-h-screen">
-      <div className="grid grid-cols-1 gap-y-4 h-full">
+    <div className="fixed top-20 left-0 border-r bg-slate-200 border-black w-44 md:w-64 h-full">
+      <div className="grid grid-cols-1 gap-y-4">
         <Link 
           to="/user/portfolyo-list" 
           className="flex justify-center items-center w-full h-16 bg-slate-800 font-customNormal text-white font-medium text-lg tracking-wide text-nowrap mt-5 underline">
